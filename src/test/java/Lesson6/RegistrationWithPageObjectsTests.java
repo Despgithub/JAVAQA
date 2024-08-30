@@ -2,56 +2,59 @@ package Lesson6;
 
 import Lesson6.Pages.RegistrationPage;
 import Lesson6.Pages.components.ResultTable;
+import Lesson6.Utils.RandomUtils;
 import org.junit.jupiter.api.Test;
 
 public class RegistrationWithPageObjectsTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
     ResultTable resultTable = new ResultTable();
+    RandomUtils randomUtils = new RandomUtils();
+
 
     @Test
     void successfulRegistrationAllFieldsTest() {
         registrationPage.openPage()
-                .setFirstName("Ostap")
-                .setLastName("Suleyman Berta Maria Bender Bey")
-                .setEmail("Osya@test.com")
-                .setGender("Male")
-                .setUserNumber("9876543210")
-                .setDateOfBirth("25", "August", "2024")
-                .setSubjects("Commerce")
-                .selectHobbies("Sports")
-                .uploadPicture("Ostap.png")
-                .setAddress("Moskva, Voznesenskij pereulok, 7")
-                .selectState("NCR")
-                .selectCity("Delhi")
+                .setFirstName(randomUtils.firstName)
+                .setLastName(randomUtils.lastName)
+                .setEmail(randomUtils.email)
+                .setGender(randomUtils.gender)
+                .setUserNumber(randomUtils.userNumber)
+                .setDateOfBirth(randomUtils.day, randomUtils.month, randomUtils.year)
+                .setSubjects(randomUtils.subject)
+                .selectHobbies(randomUtils.hobbies)
+                .uploadPicture(randomUtils.picture)
+                .setAddress(randomUtils.address)
+                .selectState(randomUtils.state)
+                .selectCity(randomUtils.city)
                 .clickSubmitButton();
 
         resultTable.appear().checkHeader()
-                .checkTableValue("Student Name", "Ostap Suleyman Berta Maria Bender Bey")
-                .checkTableValue("Student Email", "Osya@test.com")
-                .checkTableValue("Gender", "Male")
-                .checkTableValue("Mobile", "9876543210")
-                .checkTableValue("Date of Birth", "25 August,2024")
-                .checkTableValue("Subjects", "Commerce")
-                .checkTableValue("Hobbies", "Sports")
-                .checkTableValue("Picture", "Ostap.png")
-                .checkTableValue("Address", "Moskva, Voznesenskij pereulok, 7")
-                .checkTableValue("State and City", "NCR Delhi");
+                .checkTableValue("Student Name", randomUtils.firstName + " " + randomUtils.lastName)
+                .checkTableValue("Student Email", randomUtils.email)
+                .checkTableValue("Gender", randomUtils.gender)
+                .checkTableValue("Mobile", randomUtils.userNumber)
+                .checkTableValue("Date of Birth", randomUtils.day + " " + randomUtils.month + "," + randomUtils.year)
+                .checkTableValue("Subjects", randomUtils.subject)
+                .checkTableValue("Hobbies", randomUtils.hobbies)
+                .checkTableValue("Picture", randomUtils.picture)
+                .checkTableValue("Address", randomUtils.address)
+                .checkTableValue("State and City", randomUtils.state + " " + randomUtils.city);
     }
 
     @Test
     void successfulRegistrationRequiredFieldsTest() {
         registrationPage.openPage()
-                .setFirstName("Ostap")
-                .setLastName("Suleyman Berta Maria Bender Bey")
-                .setGender("Male")
-                .setUserNumber("9876543210")
+                .setFirstName(randomUtils.firstName)
+                .setLastName(randomUtils.lastName)
+                .setGender(randomUtils.gender)
+                .setUserNumber(randomUtils.userNumber)
                 .clickSubmitButton();
 
         resultTable.appear().checkHeader()
-                .checkTableValue("Student Name", "Ostap Suleyman Berta Maria Bender Bey")
-                .checkTableValue("Gender", "Male")
-                .checkTableValue("Mobile", "9876543210");
+                .checkTableValue("Student Name", randomUtils.firstName + " " + randomUtils.lastName)
+                .checkTableValue("Gender", randomUtils.gender)
+                .checkTableValue("Mobile", randomUtils.userNumber);
     }
 
     @Test
