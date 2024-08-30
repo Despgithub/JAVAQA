@@ -13,7 +13,9 @@ public class ResultTable {
                 .shouldBe(visible)
                 .shouldHave(text("Thanks for submitting the form"));
         return this;
-    }    private final SelenideElement resultWindow = $(".modal-dialog"),
+    }
+
+    private final SelenideElement resultWindow = $(".modal-dialog"),
             resultWindowHeader = resultWindow.$("#example-modal-sizes-title-lg"),
             resultTable = resultWindow.$(".table-responsive");
 

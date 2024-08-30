@@ -9,7 +9,9 @@ import static com.codeborne.selenide.Selenide.*;
 
 
 public class RegistrationPage {
+
     CalendarComponent calendarComponent = new CalendarComponent();
+
     private SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),

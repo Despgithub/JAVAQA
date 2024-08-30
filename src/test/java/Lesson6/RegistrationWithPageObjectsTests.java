@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 public class RegistrationWithPageObjectsTests extends TestBase {
 
-
     RegistrationPage registrationPage = new RegistrationPage();
     ResultTable resultTable = new ResultTable();
 

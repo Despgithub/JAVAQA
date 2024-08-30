@@ -27,13 +27,13 @@ public class TextBoxTests {
         open("/text-box");
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
-        $("#userName").setValue("Ostap");
+        $("#userName").setValue("Ostap Suleyman Berta Maria Bender Bey");
         $("#userEmail").setValue("Osya@test.com");
         $("#currentAddress").setValue("Moskva, Voznesenskij pereulok, 7");
         $("#permanentAddress").setValue("Better world 13");
         $("#submit").click();
 
-        $("#output #name").shouldHave(text("Ostap"));
+        $("#output #name").shouldHave(text("Ostap Suleyman Berta Maria Bender Bey"));
         $("#output #email").shouldHave(text("Osya@test.com"));
         $("#output #currentAddress").shouldHave(text("Moskva, Voznesenskij pereulok, 7"));
         $("#output #permanentAddress").shouldHave(text("Better world 13"));
