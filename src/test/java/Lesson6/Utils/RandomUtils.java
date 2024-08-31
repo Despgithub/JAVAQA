@@ -23,6 +23,22 @@ public class RandomUtils {
             state = getState(),
             city = getCity(state);
 
+    public static String getSubjects() {
+        return faker.options().option("Commerce", "Medicine", "Archeology");
+    }
+
+    public String getFirstName() {
+        return faker.name().firstName();
+    }
+
+    public String getLastName() {
+        return faker.name().lastName();
+    }
+
+    public String getEmail() {
+        return faker.internet().emailAddress();
+    }
+
     public static String getUserNumber() {
         return faker.number().digits(10);
     }
@@ -42,8 +58,9 @@ public class RandomUtils {
         return String.valueOf(faker.number().numberBetween(1970, 2005));
     }
 
-    public static String getSubjects() {
-        return faker.options().option("Java", "Python", "JS");
+    public String getGender() {
+        String[] genders = {"Male", "Female", "Other"};
+        return faker.options().option(genders);
     }
 
     public static String getHobbies() {
@@ -81,23 +98,6 @@ public class RandomUtils {
                 break;
         }
         return city;
-    }
-
-    public String getFirstName() {
-        return faker.name().firstName();
-    }
-
-    public String getLastName() {
-        return faker.name().lastName();
-    }
-
-    public String getEmail() {
-        return faker.internet().emailAddress();
-    }
-
-    public String getGender() {
-        String[] genders = {"Male", "Female", "Other"};
-        return faker.options().option(genders);
     }
 
 }
